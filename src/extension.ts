@@ -27,7 +27,7 @@ export async function activate(_: vscode.ExtensionContext) {
 
   const workSpacePath = vscode.workspace.workspaceFolders?.[0].uri.path;
   const filePath = vscode.window.activeTextEditor?.document.fileName;
-  var cwd: string
+  var cwd: string = workSpacePath ?? "";
 
   console.log("Workspace path: " + workSpacePath, "File path: " + filePath);
   if (workSpacePath && fs.existsSync(path.join(workSpacePath, "Chart.yaml"))) {
@@ -57,8 +57,9 @@ export async function activate(_: vscode.ExtensionContext) {
     documentSelector: [{ scheme: "file", language: "helm" }],
     synchronize: {},
     workspaceFolder: {
-      uri: url.pathToFileURL(cwd),
-      name: vscode.workspace.workspaceFolders?.[0].name,
+      uri: vscode.Uri.file(cwd),
+      name: vscode.workspace.workspaceFolders?.[0].name ?? "",
+      index: 0
     }
   };
 
