@@ -4,6 +4,7 @@
   "description": "helm-ls language server extension",
   "version": "0.0.1",
   "license": "MIT",
+  "publisher": "helm-ls",
   "engines": {
     "vscode": "^1.85.0"
   },
