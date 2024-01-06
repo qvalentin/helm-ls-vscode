@@ -2,12 +2,19 @@
 
 <!-- vim-markdown-toc GFM -->
 
+* [Getting Started](#getting-started)
 * [Requirements](#requirements)
 * [Extension Settings](#extension-settings)
 * [Contributing](#contributing)
 * [License](#license)
 
 <!-- vim-markdown-toc -->
+
+## Getting Started
+Install the extension from either VSCode marketplace or Open-VSX
+
+- [Open-VSX](https://open-vsx.org/extension/helm-ls/helm-ls)
+- [VSCode marketplace](https://marketplace.visualstudio.com/items?itemName=helm-ls.helm-ls)
 
 ## Requirements
 
