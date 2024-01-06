@@ -7,7 +7,6 @@ export async function getHelmLsExecutable() {
   return await isHelmLsOnPath(`helm_ls${suffix}`);
 }
 
-
 /**
  * @param {string} exe executable name (without extension if on Windows)
  * @return {Promise<string|null>} executable path if found
@@ -21,7 +20,7 @@ async function isHelmLsOnPath(exe: string): Promise<string | null> {
     .filter(Boolean);
   const extensions = envExt.split(";");
   const candidates = pathDirs.flatMap((d) =>
-    extensions.map((ext) => path.join(d, exe + ext))
+    extensions.map((ext) => path.join(d, exe + ext)),
   );
   try {
     return await Promise.any(candidates.map(checkFileExists));

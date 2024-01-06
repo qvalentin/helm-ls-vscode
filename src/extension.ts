@@ -1,61 +1,56 @@
-import * as vscode from 'vscode';
-
+import * as vscode from "vscode";
 
 import {
-	Executable,
-	LanguageClient,
-	LanguageClientOptions,
-	ServerOptions,
-	TransportKind
-} from 'vscode-languageclient/node';
-import { getHelmLsExecutable } from './util/executable';
+  Executable,
+  LanguageClient,
+  LanguageClientOptions,
+  ServerOptions,
+  TransportKind,
+} from "vscode-languageclient/node";
+import { getHelmLsExecutable } from "./util/executable";
 
 let client: LanguageClient;
 
 export async function activate(_: vscode.ExtensionContext) {
+  const helmLsExecutable = await getHelmLsExecutable();
 
+  if (!helmLsExecutable) {
+    vscode.window.showErrorMessage("Helm Ls executable not found");
+    return;
+  }
 
-	const helmLsExecutable = await getHelmLsExecutable()
+  console.log("Launching " + helmLsExecutable);
 
-	if (!helmLsExecutable) {
-		vscode.window.showErrorMessage('Helm Ls executable not found');
-		return;
-	}
+  const executable: Executable = {
+    command: helmLsExecutable,
+    args: ["serve"],
+    transport: TransportKind.stdio,
+  };
 
-	console.log("Launching " + helmLsExecutable)
+  const serverOptions: ServerOptions = {
+    run: executable,
+    debug: executable,
+  };
 
-	const executable: Executable = {
-		command: helmLsExecutable,
-		args: [
-			"serve"
-		],
-		transport: TransportKind.stdio
-	}
+  const clientOptions: LanguageClientOptions = {
+    documentSelector: [{ scheme: "file", language: "helm" }],
+    synchronize: {},
+  };
 
-	const serverOptions: ServerOptions = {
-		run: executable,
-		debug: executable
-	};
+  client = new LanguageClient(
+    "helm-ls",
+    "Helm Language Server",
+    serverOptions,
+    clientOptions,
+  );
 
-	const clientOptions: LanguageClientOptions = {
-		documentSelector: [{ scheme: 'file', language: 'helm' }],
-		synchronize: {}
-	};
-
-	client = new LanguageClient(
-		'helm-ls',
-		'Helm Language Server',
-		serverOptions,
-		clientOptions
-	);
-
-	client.start();
+  client.start();
 }
 
 export function deactivate(): Thenable<void> | undefined {
-	console.log('deactivate');
-	if (!client) {
-		return undefined;
-	}
-	return client.stop();
+  console.log("deactivate");
+  if (!client) {
+    return undefined;
+  }
+  return client.stop();
 }
