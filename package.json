@@ -5,6 +5,8 @@
   "version": "0.0.1",
   "license": "MIT",
   "publisher": "helm-ls",
+  "repository": "https://github.com/qvalentin/helm-ls-vscode",
+  "icon": "./images/helm-icon-color.png"
   "engines": {
     "vscode": "^1.85.0"
   },
