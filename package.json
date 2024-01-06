@@ -6,7 +6,7 @@
   "license": "MIT",
   "publisher": "helm-ls",
   "repository": "https://github.com/qvalentin/helm-ls-vscode",
-  "icon": "./images/helm-icon-color.png"
+  "icon": "./images/helm-icon-color.png",
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -15,9 +15,9 @@
     "Programming Languages",
     "Other"
   ],
-	"activationEvents": [
-		"onLanguage:helm"
-	],
+  "activationEvents": [
+    "onLanguage:helm"
+  ],
   "main": "./dist/extension.js",
   "contributes": {},
   "scripts": {
@@ -29,23 +29,25 @@
     "watch-tests": "tsc -p . -w --outDir out",
     "pretest": "npm run compile-tests && npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
-    "test": "vscode-test"
+    "test": "vscode-test",
+    "release": "release-it"
   },
-	"dependencies": {
-		"vscode-languageclient": "^9.0.1"
-	},
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1"
+  },
   "devDependencies": {
-    "@types/vscode": "^1.85.0",
     "@types/mocha": "^10.0.6",
     "@types/node": "18.x",
+    "@types/vscode": "^1.85.0",
     "@typescript-eslint/eslint-plugin": "^6.15.0",
     "@typescript-eslint/parser": "^6.15.0",
-    "eslint": "^8.56.0",
-    "typescript": "^5.3.3",
-    "ts-loader": "^9.5.1",
-    "webpack": "^5.89.0",
-    "webpack-cli": "^5.1.4",
     "@vscode/test-cli": "^0.0.4",
-    "@vscode/test-electron": "^2.3.8"
+    "@vscode/test-electron": "^2.3.8",
+    "eslint": "^8.56.0",
+    "release-it": "^17.0.1",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.3.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
   }
 }
