@@ -2,9 +2,7 @@ import path from "path";
 import fs from "fs/promises";
 
 export async function getHelmLsExecutable() {
-  const suffix = process.platform === "win32" ? ".exe" : "";
-
-  return await isHelmLsOnPath(`helm_ls${suffix}`);
+  return await isHelmLsOnPath(`helm_ls`);
 }
 
 /**
