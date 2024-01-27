@@ -1,5 +1,12 @@
 
 
+## [0.0.7](https://github.com/qvalentin/helm-ls-vscode/compare/0.0.6...0.0.7) (2024-01-27)
+
+
+### Bug Fixes
+
+* **launching:** remove double executable suffix on windows ([e663a75](https://github.com/qvalentin/helm-ls-vscode/commit/e663a75a2059a5b553b0e9e2c6d0821458048006))
+
 ## [0.0.6](https://github.com/qvalentin/helm-ls-vscode/compare/0.0.5...0.0.6) (2024-01-06)
 
 

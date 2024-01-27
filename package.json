@@ -2,7 +2,7 @@
   "name": "helm-ls",
   "displayName": "helm-ls",
   "description": "helm-ls language server extension",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "license": "MIT",
   "publisher": "helm-ls",
   "repository": "https://github.com/qvalentin/helm-ls-vscode",
