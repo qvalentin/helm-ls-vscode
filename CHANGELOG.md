@@ -1,5 +1,19 @@
 
 
+## [1.0.0](https://github.com/qvalentin/helm-ls-vscode/compare/0.0.7...1.0.0) (2024-02-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **workspace:** this requires helm-ls v0.0.10 or later
+helm-ls now supports editing multiple charts, and also having a
+different workspace directory that the chart directory so the custom
+logic for finding the chart directory is not needed anymore
+
+### Features
+
+* **workspace:** remove custom workspace logic ([571bfd5](https://github.com/qvalentin/helm-ls-vscode/commit/571bfd54db6950136c6edd93db4b97b58d799c6d))
+
 ## [0.0.7](https://github.com/qvalentin/helm-ls-vscode/compare/0.0.6...0.0.7) (2024-01-27)
 
 
