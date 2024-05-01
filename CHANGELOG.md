@@ -1,5 +1,12 @@
 
 
+## [1.1.0](https://github.com/qvalentin/helm-ls-vscode/compare/1.0.0...1.1.0) (2024-05-01)
+
+
+### Features
+
+* add config option for executable path ([4698714](https://github.com/qvalentin/helm-ls-vscode/commit/4698714230bc1e21b3f0852b4f902f4313ccd2d2))
+
 ## [1.0.0](https://github.com/qvalentin/helm-ls-vscode/compare/0.0.7...1.0.0) (2024-02-05)
 
 
