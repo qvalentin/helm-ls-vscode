@@ -1,7 +1,12 @@
 import path from "path";
 import fs from "fs/promises";
+import * as vscode from "vscode";
 
-export async function getHelmLsExecutable() {
+export async function getHelmLsExecutable(): Promise<string | null> {
+  const pathFromConfig: (string | undefined) = vscode.workspace.getConfiguration("helm-ls").get("path")
+  if (pathFromConfig) {
+    return pathFromConfig;
+  }
   return await isHelmLsOnPath(`helm_ls`);
 }
 

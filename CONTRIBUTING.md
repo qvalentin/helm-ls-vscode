@@ -1,3 +1,9 @@
+# Developing 
+
+Use vscode or vscodeium to develop the extension.
+Pressing F5 in the extension.ts file should launch the extension in vscodeium.
+You might need to run `npm run compile` after making code changes.
+
 
 # Creating releases
 To create a release run `npm run release`

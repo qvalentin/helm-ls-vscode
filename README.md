@@ -23,7 +23,9 @@ The [kubernetes extension](https://github.com/vscode-kubernetes-tools/vscode-kub
 
 ## Extension Settings
 
-tbd
+The extension can be configured via the `helm-ls` extension settings.
+
+- `helm-ls.path` (optional): Path to the `helm-ls` executable
 
 ## Contributing
 
