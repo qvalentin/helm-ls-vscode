@@ -1,5 +1,12 @@
 
 
+## [1.1.1](https://github.com/qvalentin/helm-ls-vscode/compare/1.1.0...1.1.1) (2024-05-01)
+
+
+### Bug Fixes
+
+* update vscode engine version ([1639eb3](https://github.com/qvalentin/helm-ls-vscode/commit/1639eb3411be88ec13a71495ef89fa1543cc6689))
+
 ## [1.1.0](https://github.com/qvalentin/helm-ls-vscode/compare/1.0.0...1.1.0) (2024-05-01)
 
 
