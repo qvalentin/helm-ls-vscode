@@ -1,5 +1,17 @@
 
 
+## [1.2.0](https://github.com/qvalentin/helm-ls-vscode/compare/1.1.1...1.2.0) (2024-10-27)
+
+
+### Features
+
+* add server configuration options ([ff94664](https://github.com/qvalentin/helm-ls-vscode/commit/ff94664e70962f2ea8370f45a587c664ebca9ba2))
+
+
+### Bug Fixes
+
+* add extensionDependency ([fc464d2](https://github.com/qvalentin/helm-ls-vscode/commit/fc464d2d01a8a2000a5cbdc1f9bd10442d88d238))
+
 ## [1.1.1](https://github.com/qvalentin/helm-ls-vscode/compare/1.1.0...1.1.1) (2024-05-01)
 
 
