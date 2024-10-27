@@ -31,6 +31,9 @@
       }
     }
   },
+  "extensionDependencies": [
+    "ms-kubernetes-tools.vscode-kubernetes-tools"
+  ],
   "scripts": {
     "vscode:prepublish": "npm run package",
     "compile": "webpack",
