@@ -2,15 +2,16 @@
 
 <!-- vim-markdown-toc GFM -->
 
-* [Getting Started](#getting-started)
-* [Requirements](#requirements)
-* [Extension Settings](#extension-settings)
-* [Contributing](#contributing)
-* [License](#license)
+- [Getting Started](#getting-started)
+- [Requirements](#requirements)
+- [Extension Settings](#extension-settings)
+- [Contributing](#contributing)
+- [License](#license)
 
 <!-- vim-markdown-toc -->
 
 ## Getting Started
+
 Install the extension from either VSCode marketplace or Open-VSX
 
 - [Open-VSX](https://open-vsx.org/extension/helm-ls/helm-ls)
@@ -26,6 +27,7 @@ The [kubernetes extension](https://github.com/vscode-kubernetes-tools/vscode-kub
 The extension can be configured via the `helm-ls` extension settings.
 
 - `helm-ls.path` (optional): Path to the `helm-ls` executable
+- Server configuration as described in [Configuration options](https://github.com/mrjosh/helm-ls/?tab=readme-ov-file#configuration-options)
 
 ## Contributing
 

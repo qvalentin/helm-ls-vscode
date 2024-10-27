@@ -48,7 +48,7 @@ export async function activate(_: vscode.ExtensionContext) {
 }
 
 export function deactivate(): Thenable<void> | undefined {
-  console.log("deactivate");
+  console.log("Deactivating helm-ls");
   if (!client) {
     return undefined;
   }

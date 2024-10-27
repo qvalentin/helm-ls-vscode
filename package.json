@@ -27,6 +27,38 @@
           "type": "string",
           "description": "The path to the helm-ls binary. If not set, the extension will search for the binary in the PATH.",
           "default": ""
+        },
+        "helm-ls.logLevel": {
+          "type": "string",
+          "description": "The log level to use when running helm-ls.",
+          "default": "info"
+        },
+        "helm-ls.valuesFiles": {
+          "type": "object",
+          "description": "The values files to be used by helm-ls. Checkout the Readme of helm-ls for more information. Note that you must restart the language server or the editor to have the changes take effect.",
+          "default": {
+            "mainValuesFile": "values.yaml",
+            "lintOverlayValuesFile": "values.lint.yaml",
+            "additionalValuesFilesGlobPattern": "values*.yaml"
+          }
+        },
+        "helm-ls.yamlls": {
+          "type": "object",
+          "description": "The yamlls config to pass to helm-ls. Checkout the Readme of helm-ls for more information. Note that you must restart the language server or the editor to have the changes take effect.",
+          "default": {
+            "enabled": true,
+            "enabledForFilesGlob": "*.{yaml,yml}",
+            "diagnosticsLimit": 50,
+            "showDiagnosticsDirectly": false,
+            "path": "yaml-language-server",
+            "config": {
+              "schemas": {
+                "kubernetes": "templates/**"
+              },
+              "completion": true,
+              "hover": true
+            }
+          }
         }
       }
     }
