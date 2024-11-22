@@ -1,5 +1,12 @@
 
 
+## [1.2.1](https://github.com/qvalentin/helm-ls-vscode/compare/1.2.0...1.2.1) (2024-11-22)
+
+
+### Bug Fixes
+
+* **config:** remove not overwriteable  default ([96de9e1](https://github.com/qvalentin/helm-ls-vscode/commit/96de9e169dd2e5d1f28e1fc3af9d33474cc8fc2b))
+
 ## [1.2.0](https://github.com/qvalentin/helm-ls-vscode/compare/1.1.1...1.2.0) (2024-10-27)
 
 
