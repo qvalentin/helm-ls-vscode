@@ -52,9 +52,7 @@
             "showDiagnosticsDirectly": false,
             "path": "yaml-language-server",
             "config": {
-              "schemas": {
-                "kubernetes": "templates/**"
-              },
+              "schemas": {},
               "completion": true,
               "hover": true
             }
