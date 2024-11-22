@@ -1,5 +1,12 @@
 
 
+## [1.2.2](https://github.com/qvalentin/helm-ls-vscode/compare/1.2.1...1.2.2) (2024-11-22)
+
+
+### Reverts
+
+* Revert "fix(config): remove not overwriteable  default" ([b368ad1](https://github.com/qvalentin/helm-ls-vscode/commit/b368ad1fac9a0f85cc02fb7518966aa529cc38f2))
+
 ## [1.2.1](https://github.com/qvalentin/helm-ls-vscode/compare/1.2.0...1.2.1) (2024-11-22)
 
 
