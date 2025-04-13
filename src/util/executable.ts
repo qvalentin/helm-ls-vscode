@@ -151,6 +151,12 @@ export async function getHelmLsExecutable(
     .getConfiguration("helm-ls")
     .get<string>("path");
   if (pathFromConfig) {
+    if (!(await fs.stat(pathFromConfig)).isFile()) {
+      vscode.window.showErrorMessage(
+        `Helm-ls path configured in settings is not a file: ${pathFromConfig}`,
+      );
+      return null;
+    }
     return pathFromConfig;
   }
 
