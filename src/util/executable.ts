@@ -49,6 +49,7 @@ function getPlatformInfo(): PlatformInfo {
 }
 
 async function downloadFile(url: string, destPath: string): Promise<void> {
+  console.log("Helm-ls: Downloading file ", url);
   const response = await new Promise<IncomingMessage>((resolve, reject) => {
     const request = https.get(url, resolve);
     request.on("error", reject);
@@ -63,7 +64,7 @@ async function downloadFile(url: string, destPath: string): Promise<void> {
   }
 
   if (response.statusCode !== 200) {
-    throw new Error(`Failed to download file: ${response.statusCode}`);
+    throw new Error(`Failed to download file ${url}: ${response.statusCode}`);
   }
 
   const file = createWriteStream(destPath, { autoClose: true });
@@ -88,12 +89,13 @@ async function verifyChecksum(
   return hash === expectedChecksum;
 }
 
-async function downloadHelmLs(
+export async function downloadHelmLs(
   context: vscode.ExtensionContext,
+  platformInfo: PlatformInfo,
 ): Promise<string> {
-  const { platform, arch, extension } = getPlatformInfo();
+  const { platform, arch, extension } = platformInfo;
   const binaryName = `helm_ls_${platform}_${arch}${extension}`;
-  const checksumName = `${binaryName}.sha256sum`;
+  const checksumName = `helm_ls_${platform}_${arch}.sha256sum`;
 
   const downloadDir = context.globalStorageUri.fsPath;
   await fs.mkdir(downloadDir, { recursive: true });
@@ -158,7 +160,7 @@ export async function getHelmLsExecutable(
   }
 
   try {
-    return await downloadHelmLs(context);
+    return await downloadHelmLs(context, getPlatformInfo());
   } catch (error) {
     vscode.window.showErrorMessage(`Failed to download helm-ls: ${error}`);
     return null;

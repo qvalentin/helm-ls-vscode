@@ -25,7 +25,7 @@
       "properties": {
         "helm-ls.path": {
           "type": "string",
-          "description": "The path to the helm-ls binary. If not set, the extension will search for the binary in the PATH.",
+          "description": "The path to the helm-ls binary. If not set, the extension will search for the binary in the PATH or download it.",
           "default": ""
         },
         "helm-ls.logLevel": {
