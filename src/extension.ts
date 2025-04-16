@@ -11,11 +11,20 @@ import { getHelmLsExecutable } from "./util/executable";
 
 let client: LanguageClient;
 
-export async function activate(_: vscode.ExtensionContext) {
-  const helmLsExecutable = await getHelmLsExecutable();
+/**
+ * Activates the Helm Language Server extension.
+ *
+ * This asynchronous function retrieves the Helm-ls executable using the provided extension context.
+ * If the executable is not found, it displays an error message to the user and aborts activation.
+ * Otherwise, it configures and starts a language client to interface with the Helm Language Server.
+ *
+ * @param context The VS Code extension context used to access environment resources.
+ */
+export async function activate(context: vscode.ExtensionContext) {
+  const helmLsExecutable = await getHelmLsExecutable(context);
 
   if (!helmLsExecutable) {
-    vscode.window.showErrorMessage("Helm Ls executable not found");
+    vscode.window.showErrorMessage("Helm-ls executable not found");
     return;
   }
 
@@ -34,7 +43,7 @@ export async function activate(_: vscode.ExtensionContext) {
 
   const clientOptions: LanguageClientOptions = {
     documentSelector: [{ scheme: "file", language: "helm" }],
-    synchronize: {}
+    synchronize: {},
   };
 
   client = new LanguageClient(
