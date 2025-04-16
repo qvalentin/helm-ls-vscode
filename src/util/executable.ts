@@ -16,6 +16,16 @@ interface PlatformInfo {
   extension: string;
 }
 
+/**
+ * Retrieves standardized platform information for the current operating system.
+ *
+ * This function uses Node.js OS methods to obtain the system's platform and architecture,
+ * mapping them to standardized names. It returns a PlatformInfo object containing the platform,
+ * architecture, and executable file extension (".exe" for Windows, an empty string for other systems).
+ *
+ * @throws {Error} If the current platform or architecture is unsupported.
+ * @returns A PlatformInfo object with standardized details.
+ */
 function getPlatformInfo(): PlatformInfo {
   const platform = os.platform();
   const arch = os.arch();
@@ -48,6 +58,18 @@ function getPlatformInfo(): PlatformInfo {
   };
 }
 
+/**
+ * Downloads a file from a given URL and saves it to the specified destination path.
+ *
+ * This function initiates an HTTPS GET request to fetch the file. If the server responds with a
+ * redirect (HTTP status 301 or 302), it follows the redirect by recursively calling itself with the new URL.
+ * The file is streamed to the destination and the write stream is closed upon completion or error.
+ *
+ * @param url - The URL of the file to download.
+ * @param destPath - The local file system path where the file should be saved.
+ *
+ * @throws {Error} If a redirect response is missing the Location header or if the final response status is not 200.
+ */
 async function downloadFile(url: string, destPath: string): Promise<void> {
   console.log("Helm-ls: Downloading file ", url);
   const response = await new Promise<IncomingMessage>((resolve, reject) => {
@@ -80,6 +102,16 @@ async function downloadFile(url: string, destPath: string): Promise<void> {
   }
 }
 
+/**
+ * Computes the SHA-256 hash of a file and compares it against an expected value.
+ *
+ * This function reads the file at the specified path, computes its SHA-256 hash,
+ * and checks if the resulting hexadecimal digest matches the provided expected checksum.
+ *
+ * @param filePath - The path to the file whose checksum is to be verified.
+ * @param expectedChecksum - The expected SHA-256 hash value in hexadecimal format.
+ * @returns A promise that resolves to true if the computed hash matches the expected checksum, otherwise false.
+ */
 async function verifyChecksum(
   filePath: string,
   expectedChecksum: string,
@@ -89,6 +121,18 @@ async function verifyChecksum(
   return hash === expectedChecksum;
 }
 
+/**
+ * Downloads and verifies the Helm language server executable.
+ *
+ * If a matching executable already exists in the extension's global storage, its path is returned.
+ * Otherwise, the function downloads the binary and its corresponding checksum file from GitHub,
+ * verifies the checksum, sets the executable permissions, and writes the current version to a file.
+ *
+ * @param platformInfo - Contains the platform name, architecture, and file extension used to form the download URLs.
+ * @returns The file path to the downloaded Helm language server executable.
+ *
+ * @throws {Error} When the checksum verification of the downloaded binary fails.
+ */
 export async function downloadHelmLs(
   context: vscode.ExtensionContext,
   platformInfo: PlatformInfo,
@@ -144,6 +188,16 @@ export async function downloadHelmLs(
   return binaryPath;
 }
 
+/**
+ * Retrieves the Helm language server executable path.
+ *
+ * The function first checks the user configuration for a predefined Helm language server path.
+ * If not found, it searches for the executable in the system PATH. If the executable is still
+ * unavailable, it attempts to download it for the current platform. In case of a download failure,
+ * an error message is displayed and null is returned.
+ *
+ * @returns The path to the Helm language server executable, or null if it cannot be obtained.
+ */
 export async function getHelmLsExecutable(
   context: vscode.ExtensionContext,
 ): Promise<string | null> {
@@ -173,6 +227,17 @@ export async function getHelmLsExecutable(
   }
 }
 
+/**
+ * Checks if the specified executable exists on the system PATH.
+ *
+ * This function generates possible file paths by combining each directory from the PATH
+ * with the executable name appended by each extension specified in PATHEXT, and returns
+ * the first valid path where the executable is found. If none of the candidates exist,
+ * it returns null.
+ *
+ * @param exe - The base name of the executable (without file extension).
+ * @returns The full path to the executable if found; otherwise, null.
+ */
 async function isHelmLsOnPath(exe: string): Promise<string | null> {
   const envPath = process.env.PATH || "";
   const envExt = process.env.PATHEXT || "";
@@ -192,6 +257,17 @@ async function isHelmLsOnPath(exe: string): Promise<string | null> {
   }
 }
 
+/**
+ * Checks whether the specified path exists and is a file.
+ *
+ * Validates that the file system entry at the given path exists and is a regular file.
+ * Returns the same file path if validation is successful.
+ *
+ * @param filePath - The path to verify.
+ * @returns The original file path if it points to a valid file.
+ *
+ * @throws {Error} If the path does not refer to a valid file.
+ */
 async function checkFileExists(filePath: string): Promise<string> {
   if ((await fs.stat(filePath)).isFile()) {
     return filePath;
