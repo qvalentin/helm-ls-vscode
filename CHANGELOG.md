@@ -1,5 +1,17 @@
 
 
+## [1.3.0](https://github.com/qvalentin/helm-ls-vscode/compare/1.2.2...1.3.0) (2025-04-16)
+
+
+### Features
+
+* download helm-ls binary ([95d09eb](https://github.com/qvalentin/helm-ls-vscode/commit/95d09ebbb99ca2b209d3022b66a2ea84666ed929))
+
+
+### Bug Fixes
+
+* check if executable from config is a file ([1a167dc](https://github.com/qvalentin/helm-ls-vscode/commit/1a167dc77c069291c1b05cd2a3bfbfc28fde93d6))
+
 ## [1.2.2](https://github.com/qvalentin/helm-ls-vscode/compare/1.2.1...1.2.2) (2024-11-22)
 
 
