@@ -7,7 +7,7 @@ import * as crypto from "crypto";
 import * as os from "os";
 import { IncomingMessage } from "http";
 
-const HELM_LS_VERSION = "v0.2.0";
+const HELM_LS_VERSION = "v0.2.1";
 const HELM_LS_REPO = "mrjosh/helm-ls";
 
 interface PlatformInfo {
