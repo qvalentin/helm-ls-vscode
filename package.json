@@ -16,7 +16,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onLanguage:helm"
+    "onLanguage:helm",
+    "onLanguage:yaml"
   ],
   "main": "./dist/extension.js",
   "contributes": {
