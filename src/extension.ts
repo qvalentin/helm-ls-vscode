@@ -42,7 +42,13 @@ export async function activate(context: vscode.ExtensionContext) {
   };
 
   const clientOptions: LanguageClientOptions = {
-    documentSelector: [{ scheme: "file", language: "helm" }],
+    documentSelector: [
+      { language: "helm" },
+      {
+        language: "yaml",
+        pattern: "**/values*.yaml",
+      },
+    ],
     synchronize: {},
   };
 
