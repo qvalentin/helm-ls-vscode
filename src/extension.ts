@@ -45,12 +45,12 @@ export async function activate(context: vscode.ExtensionContext) {
     documentSelector: [
       { 
         language: "helm",
-        scheme: "file"
+        scheme: "file",
       },
       {
         language: "yaml",
         pattern: "**/values*.yaml",
-        scheme: "file"
+        scheme: "file",
       },
     ],
     synchronize: {},
