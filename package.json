@@ -45,7 +45,7 @@
         },
         "helm-ls.yamlls": {
           "type": "object",
-          "description": "The yamlls config to pass to helm-ls. Checkout the Readme of helm-ls for more information. Note that you must restart the language server or the editor to have the changes take effect.",
+          "description": "The yamlls config to pass to helm-ls. The extension will automatically use the yaml-language-server JavaScript file from the YAML vscode extension when available.",
           "default": {
             "enabled": true,
             "enabledForFilesGlob": "*.{yaml,yml}",
@@ -60,12 +60,21 @@
               "hover": true
             }
           }
+        },
+        "helm-ls.yamlls.path": {
+          "oneOf": [
+            { "type": "string" },
+            { "type": "array", "items": { "type": "string" } }
+          ],
+          "description": "The path to yaml-language-server (string) or command array (array). The extension will automatically set this to use the yaml-language-server from the YAML vscode extension when available.",
+          "default": "yaml-language-server"
         }
       }
     }
   },
   "extensionDependencies": [
-    "ms-kubernetes-tools.vscode-kubernetes-tools"
+    "ms-kubernetes-tools.vscode-kubernetes-tools",
+    "redhat.vscode-yaml"
   ],
   "scripts": {
     "vscode:prepublish": "npm run package",
