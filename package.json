@@ -89,7 +89,7 @@
     "@types/vscode": "^1.88.0",
     "@typescript-eslint/eslint-plugin": "^7.8.0",
     "@typescript-eslint/parser": "^7.8.0",
-    "@vscode/test-cli": "^0.0.9",
+    "@vscode/test-cli": "^0.0.11",
     "@vscode/test-electron": "^2.3.9",
     "eslint": "^8.0.0",
     "release-it": "^17.2.1",
