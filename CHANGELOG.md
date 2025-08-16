@@ -1,3 +1,12 @@
+
+
+## [1.4.1](https://github.com/qvalentin/helm-ls-vscode/compare/1.4.0...1.4.1) (2025-08-16)
+
+
+### Bug Fixes
+
+* missing lockfile entry ([14e4a95](https://github.com/qvalentin/helm-ls-vscode/commit/14e4a951152f0f5204b685ec1425f6ba1b2e23de))
+
 ## [1.4.0](https://github.com/qvalentin/helm-ls-vscode/compare/1.3.2...1.4.0) (2025-06-01)
 
 ### Features
