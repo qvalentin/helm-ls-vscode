@@ -5,24 +5,38 @@
   ],
   "packageRules": [
     {
-      "matchDepTypes": ["devDependencies"],
+      "matchDepTypes": [
+        "devDependencies"
+      ],
       "groupName": "dev dependencies",
       "groupSlug": "dev-deps"
     },
     {
-      "matchDepTypes": ["dependencies"],
-      "matchUpdateTypes": ["minor", "patch"],
+      "matchDepTypes": [
+        "dependencies"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
       "groupName": "non-major dependencies",
       "groupSlug": "non-major-deps"
     },
     {
-      "excludePackageNames": ["helm-ls"],
-      "schedule": ["on the first day of the month"]
+      "schedule": [
+        "on the first day of the month"
+      ],
+      "matchPackageNames": [
+        "!helm-ls"
+      ]
     }
   ],
-  "regexManagers": [
+  "customManagers": [
     {
-      "fileMatch": ["^src/util/executable\\.ts$"],
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^src/util/executable\\.ts$/"
+      ],
       "matchStrings": [
         "const HELM_LS_VERSION = \"(?<currentValue>v[^\"]+)\";"
       ],
