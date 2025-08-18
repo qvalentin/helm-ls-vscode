@@ -19,12 +19,6 @@ export async function getYamlLanguageServerFromExtension(): Promise<string | nul
       return null;
     }
 
-    // Check if the extension is active
-    if (!yamlExtension.isActive) {
-      console.log("YAML extension is not active, attempting to activate...");
-      await yamlExtension.activate();
-    }
-
     // The YAML extension bundles yaml-language-server as a JavaScript file
     const extensionPath = yamlExtension.extensionPath;
     

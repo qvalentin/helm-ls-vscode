@@ -24,9 +24,7 @@ Install the extension from either VSCode marketplace or Open-VSX
 The extension will try to download helm-ls automatically.
 A `helm_ls` (see [getting Started](https://github.com/mrjosh/helm-ls/#getting-started)) executable on your `PATH` will be preferred if found.
 The [kubernetes extension](https://github.com/vscode-kubernetes-tools/vscode-kubernetes-tools) and [YAML extension](https://github.com/redhat-developer/vscode-yaml) are dependencies for this extension and will be installed automatically.
-
-> [!IMPORTANT]
-> The extension will automatically use the yaml-language-server from the YAML vscode extension. If the YAML extension is not available, you may need to install yaml-language-server manually. See the helm-ls [readme](https://github.com/mrjosh/helm-ls/?tab=readme-ov-file#integration-with-yaml-language-server)
+The extension will automatically use the yaml-language-server from the YAML vscode extension. If the YAML extension is not available, you may need to install yaml-language-server manually. See the helm-ls [readme](https://github.com/mrjosh/helm-ls/?tab=readme-ov-file#integration-with-yaml-language-server)
 
 ## Extension Settings
 
