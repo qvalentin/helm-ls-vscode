@@ -57,9 +57,6 @@ export async function getYamlLanguageServerFromExtension(): Promise<
   }
 }
 
-const mementoKey = "helm-ls.yamlls.pathManaged";
-type ManagedMeta = { managed: boolean; updatedAt?: number };
-
 export async function configureYamlLsNodeCommandIfRequired(
   context: vscode.ExtensionContext,
 ) {
@@ -78,61 +75,83 @@ export async function configureYamlLsNodeCommandIfRequired(
       return;
     }
 
-    const managedMeta = context.globalState.get<ManagedMeta>(mementoKey);
+    // Resolve the current yaml-language-server path from the YAML extension
+    const yamlExtension = vscode.extensions.getExtension("redhat.vscode-yaml");
+    const extensionPath = yamlExtension?.extensionPath;
+    const resolvedYamlLsPath = await getYamlLanguageServerFromExtension();
 
-    if (globalValue !== undefined) {
-      if (managedMeta?.managed && Array.isArray(globalValue)) {
-        const currentYamlLsPath = await getYamlLanguageServerFromExtension();
-        if (currentYamlLsPath) {
-          if (
-            (globalValue.length === 1 && globalValue[0] === "node") ||
-            globalValue[1] !== currentYamlLsPath
-          ) {
-            const yamlLsArray = ["node", currentYamlLsPath];
-            await config.update(
-              "yamlls.path",
-              yamlLsArray,
-              vscode.ConfigurationTarget.Global,
-            );
-            await context.globalState.update(mementoKey, {
-              managed: true,
-              updatedAt: Date.now(),
-            });
-            console.log(
-              `Updated managed global 'helm-ls.yamlls.path' to: ${JSON.stringify(yamlLsArray)}`,
-            );
-          }
-          return;
-        }
-        return;
-      }
-
+    if (!resolvedYamlLsPath) {
       console.log(
-        "Detected user-defined global 'helm-ls.yamlls.path'; not overwriting.",
+        "yaml-language-server not found in YAML extension; users may need to install it manually",
       );
       return;
     }
 
-    const yamlLsPath = await getYamlLanguageServerFromExtension();
-    if (yamlLsPath) {
-      const yamlLsArray = ["node", yamlLsPath];
+    const yamlLsArray = ["node", resolvedYamlLsPath] as const;
+
+    // Helper: determine if a given path is inside the YAML extension folder
+    const isPathFromYamlExtension = (candidatePath: unknown): boolean => {
+      if (typeof candidatePath !== "string" || !extensionPath) {
+        return false;
+      }
+      const normalizedCandidate = path.normalize(candidatePath);
+      const extensionsBaseDir = path.normalize(path.dirname(extensionPath));
+      // Any versioned folder like 'redhat.vscode-yaml-1.14.0' under the extensions base dir
+      const yamlExtensionDirPrefix = path.normalize(
+        path.join(extensionsBaseDir, "redhat.vscode-yaml-") + path.sep,
+      );
+      return normalizedCandidate.startsWith(yamlExtensionDirPrefix);
+    };
+
+    if (globalValue === undefined) {
+      // Nothing set globally: set it to the YAML extension's server
       await config.update(
         "yamlls.path",
         yamlLsArray,
         vscode.ConfigurationTarget.Global,
       );
-      await context.globalState.update(mementoKey, {
-        managed: true,
-        updatedAt: Date.now(),
-      });
       console.log(
         `Set global 'helm-ls.yamlls.path' to: ${JSON.stringify(yamlLsArray)}`,
       );
-    } else {
-      console.log(
-        "yaml-language-server not found, users may need to install it manually",
-      );
+      return;
     }
+
+    // If a global value exists, only manage it when it clearly points into the YAML extension
+    if (Array.isArray(globalValue)) {
+      const [command, maybePath] = globalValue as [unknown, unknown];
+
+      // Case: previously set to just ["node"], or set to YAML extension path
+      const looksManaged =
+        (command === "node" && typeof maybePath === "undefined") ||
+        (command === "node" && isPathFromYamlExtension(maybePath));
+
+      if (!looksManaged) {
+        console.log(
+          "Detected user-defined global 'helm-ls.yamlls.path'; not overwriting.",
+        );
+        return;
+      }
+
+      // If the configured path differs from the current YAML extension path, update it
+      if (
+        command !== "node" || maybePath !== resolvedYamlLsPath
+      ) {
+        await config.update(
+          "yamlls.path",
+          yamlLsArray,
+          vscode.ConfigurationTarget.Global,
+        );
+        console.log(
+          `Updated global 'helm-ls.yamlls.path' to: ${JSON.stringify(yamlLsArray)}`,
+        );
+      }
+      return;
+    }
+
+    // Non-array global values are treated as user-defined; leave them intact
+    console.log(
+      "Detected user-defined global 'helm-ls.yamlls.path'; not overwriting.",
+    );
   } catch (error) {
     console.error("Error resolving yaml-language-server:", error);
   }
