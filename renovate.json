@@ -14,6 +14,10 @@
       "matchUpdateTypes": ["minor", "patch"],
       "groupName": "non-major dependencies",
       "groupSlug": "non-major-deps"
+    },
+    {
+      "excludePackageNames": ["helm-ls"],
+      "schedule": ["on the first day of the month"]
     }
   ],
   "regexManagers": [
