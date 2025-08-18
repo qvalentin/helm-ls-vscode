@@ -57,6 +57,7 @@ export async function getYamlLanguageServerFromExtension(): Promise<
   }
 }
 
+const mementoKey = "helm-ls.yamlls.pathManaged";
 type ManagedMeta = { managed: boolean; updatedAt?: number };
 
 export async function configureYamlLsNodeCommandIfRequired(
@@ -77,7 +78,6 @@ export async function configureYamlLsNodeCommandIfRequired(
       return;
     }
 
-    const mementoKey = "helm-ls.yamlls.pathManaged";
     const managedMeta = context.globalState.get<ManagedMeta>(mementoKey);
 
     if (globalValue !== undefined) {
@@ -123,7 +123,6 @@ export async function configureYamlLsNodeCommandIfRequired(
       );
       await context.globalState.update(mementoKey, {
         managed: true,
-        lastPath: yamlLsPath,
         updatedAt: Date.now(),
       });
       console.log(
