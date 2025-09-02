@@ -9,7 +9,7 @@ import {
   TransportKind,
 } from "vscode-languageclient/node";
 import { getHelmLsExecutable } from "./util/executable";
-import { configureYamlLsNodeCommandIfRequired } from "./util/yaml-extension";
+import { getYamllsPath } from "./util/yamlls-path";
 
 let client: LanguageClient;
 
@@ -30,7 +30,14 @@ export async function activate(context: vscode.ExtensionContext) {
     return;
   }
 
-  await configureYamlLsNodeCommandIfRequired(context);
+  const helmLsEnv = {
+    ...process.env,
+  };
+
+  const yamllsPath = await getYamllsPath();
+  if (yamllsPath) {
+    helmLsEnv.YAMLLS_PATH = yamllsPath;
+  }
 
   console.log("Launching " + helmLsExecutable);
 
@@ -39,9 +46,7 @@ export async function activate(context: vscode.ExtensionContext) {
     args: ["serve"],
     transport: TransportKind.stdio,
     options: {
-      env: {
-        ...process.env,
-      },
+      env: helmLsEnv,
     },
   };
 
@@ -69,7 +74,7 @@ export async function activate(context: vscode.ExtensionContext) {
     "helm-ls",
     "Helm Language Server",
     serverOptions,
-    clientOptions,
+    clientOptions
   );
 
   client.start();

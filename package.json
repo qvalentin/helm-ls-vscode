@@ -67,7 +67,7 @@
             { "type": "array", "items": { "type": "string" } }
           ],
           "description": "The path to yaml-language-server (string) or command array (array). The extension will automatically set this to use the yaml-language-server from the YAML vscode extension when available.",
-          "default": "yaml-language-server"
+          "default": ""
         }
       }
     }
