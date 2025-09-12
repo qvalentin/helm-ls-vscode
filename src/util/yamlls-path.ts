@@ -39,7 +39,8 @@ export async function getYamllsPath(): Promise<string | null> {
 
   if (exists) {
     // TODO: think about escaping arguments with spaces
-    const command = [process.execPath, ...process.execArgv, yamllsPathFromYamlExtension].join(' ');
+    // https://github.com/sindresorhus/nano-spawn/blob/062aab5e376716e462d699f9a9200923f47705f3/source/spawn.js#L15
+    const command = [process.execPath, ...process.execArgv.filter(flag => !flag.startsWith('--inspect')), yamllsPathFromYamlExtension].join(' ');
     console.log(
       `Found yaml-language-server from YAML extension. Using: ${command}`
     );
