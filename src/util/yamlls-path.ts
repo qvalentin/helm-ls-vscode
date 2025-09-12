@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 import * as path from "path";
 import * as fs from "fs/promises";
 
-export async function getYamllsPath(): Promise<string | null> {
+export async function getYamllsPath(): Promise<string | string[] | null> {
   const config = vscode.workspace.getConfiguration("helm-ls");
   const yamllsPathFromConfig = config.get<string[] | string>("yamlls.path");
   config.inspect("yamlls.path");
@@ -38,10 +38,11 @@ export async function getYamllsPath(): Promise<string | null> {
   );
 
   if (exists) {
+    const command = [process.execPath, ...process.execArgv, yamllsPathFromYamlExtension];
     console.log(
-      `Found yaml-language-server from YAML extension at: ${yamllsPathFromYamlExtension}`
+      `Found yaml-language-server from YAML extension. Using: ${command.join(' ')}`
     );
-    return yamllsPathFromYamlExtension;
+    return command;
   }
 
   console.log(
