@@ -37,6 +37,7 @@ export async function activate(context: vscode.ExtensionContext) {
   const yamllsPath = await getYamllsPath();
   if (yamllsPath) {
     helmLsEnv.YAMLLS_PATH = yamllsPath;
+    helmLsEnv.ELECTRON_RUN_AS_NODE = "1";
   }
 
   console.log("Launching " + helmLsExecutable);
@@ -74,7 +75,7 @@ export async function activate(context: vscode.ExtensionContext) {
     "helm-ls",
     "Helm Language Server",
     serverOptions,
-    clientOptions
+    clientOptions,
   );
 
   client.start();
