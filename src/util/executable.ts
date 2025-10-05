@@ -214,7 +214,7 @@ export async function getHelmLsExecutable(
     return pathFromConfig;
   }
 
-  const pathFromEnv = await isHelmLsOnPath("helm_ls");
+  const pathFromEnv = await isExecutableOnPath("helm_ls");
   if (pathFromEnv) {
     return pathFromEnv;
   }
@@ -238,7 +238,7 @@ export async function getHelmLsExecutable(
  * @param exe - The base name of the executable (without file extension).
  * @returns The full path to the executable if found; otherwise, null.
  */
-async function isHelmLsOnPath(exe: string): Promise<string | null> {
+export async function isExecutableOnPath(exe: string): Promise<string | null> {
   const envPath = process.env.PATH || "";
   const envExt = process.env.PATHEXT || "";
   const pathDirs = envPath
