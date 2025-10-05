@@ -63,8 +63,15 @@
         },
         "helm-ls.yamlls.path": {
           "oneOf": [
-            { "type": "string" },
-            { "type": "array", "items": { "type": "string" } }
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
           ],
           "description": "The path to yaml-language-server (string) or command array (array). The extension will automatically set this to use the yaml-language-server from the YAML vscode extension when available.",
           "default": ""
@@ -89,7 +96,8 @@
     "release": "release-it"
   },
   "dependencies": {
-    "vscode-languageclient": "^9.0.1"
+    "vscode-languageclient": "^9.0.1",
+    "yaml-language-server": "^1.19.1"
   },
   "devDependencies": {
     "@release-it/conventional-changelog": "^10.0.0",

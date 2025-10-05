@@ -30,11 +30,16 @@ export async function activate(context: vscode.ExtensionContext) {
     return;
   }
 
-  const helmLsEnv = {
-    ...process.env,
-  };
+  let helmLsEnv: NodeJS.ProcessEnv = {};
 
-  const yamllsPath = await getYamllsPath();
+  for (const [key, value] of Object.entries(process.env)) {
+    if (key.includes("VSCODE")) {
+      continue;
+    }
+    helmLsEnv[key] = value;
+  }
+
+  const yamllsPath = await getYamllsPath(context.extensionPath);
   if (yamllsPath) {
     helmLsEnv.YAMLLS_PATH = yamllsPath;
     helmLsEnv.ELECTRON_RUN_AS_NODE = "1";

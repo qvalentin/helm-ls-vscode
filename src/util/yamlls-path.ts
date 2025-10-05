@@ -3,7 +3,9 @@ import * as path from "path";
 import * as fs from "fs/promises";
 import { isExecutableOnPath } from "./executable";
 
-export async function getYamllsPath(): Promise<string | null> {
+export async function getYamllsPath(
+  extensionPath: string,
+): Promise<string | null> {
   const config = vscode.workspace.getConfiguration("helm-ls");
   const yamllsPathFromConfig = config.get<string[] | string>("yamlls.path");
   config.inspect("yamlls.path");
@@ -32,8 +34,10 @@ export async function getYamllsPath(): Promise<string | null> {
     "languageserver.js",
   );
 
+  const yamllsPath = path.join(extensionPath, "dist", "languageserver.js");
+
   // Check if the bundled file exists
-  const exists = await fs.stat(yamllsPathFromYamlExtension).then(
+  const exists = await fs.stat(yamllsPath).then(
     (s) => s.isFile(),
     () => false,
   );
