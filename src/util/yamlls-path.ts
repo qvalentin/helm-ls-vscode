@@ -34,7 +34,14 @@ export async function getYamllsPath(
     "languageserver.js",
   );
 
-  const yamllsPath = path.join(extensionPath, "dist", "languageserver.js");
+  const yamllsPath = path.join(
+    extensionPath,
+    "dist",
+    "out",
+    "server",
+    "src",
+    "server.js",
+  );
 
   // Check if the bundled file exists
   const exists = await fs.stat(yamllsPath).then(
@@ -47,7 +54,7 @@ export async function getYamllsPath(
       console.log(
         `Found yaml-language-server from YAML extension. Using: node ${yamllsPathFromYamlExtension}`,
       );
-      return ["node", yamllsPathFromYamlExtension].join(",");
+      return ["node", yamllsPath].join(",");
     }
     // TODO: think about escaping arguments with spaces
     // https://github.com/sindresorhus/nano-spawn/blob/062aab5e376716e462d699f9a9200923f47705f3/source/spawn.js#L15
