@@ -108,6 +108,7 @@
     "@typescript-eslint/parser": "^8.0.0",
     "@vscode/test-cli": "^0.0.11",
     "@vscode/test-electron": "^2.3.9",
+    "copy-webpack-plugin": "^13.0.1",
     "eslint": "^9.0.0",
     "release-it": "^19.0.0",
     "ts-loader": "^9.5.1",
