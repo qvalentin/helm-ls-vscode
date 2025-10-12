@@ -45,7 +45,7 @@
         },
         "helm-ls.yamlls": {
           "type": "object",
-          "description": "The yamlls config to pass to helm-ls.",
+          "description": "The yamlls config to pass to helm-ls. Checkout the Readme of helm-ls for more information. Note that you must restart the language server or the editor to have the changes take effect.",
           "default": {
             "enabled": true,
             "enabledForFilesGlob": "*.{yaml,yml}",
@@ -80,8 +80,7 @@
     }
   },
   "extensionDependencies": [
-    "ms-kubernetes-tools.vscode-kubernetes-tools",
-    "redhat.vscode-yaml"
+    "ms-kubernetes-tools.vscode-kubernetes-tools"
   ],
   "scripts": {
     "vscode:prepublish": "npm run package",
