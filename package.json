@@ -45,7 +45,7 @@
         },
         "helm-ls.yamlls": {
           "type": "object",
-          "description": "The yamlls config to pass to helm-ls. The extension will automatically use the yaml-language-server JavaScript file from the YAML vscode extension when available.",
+          "description": "The yamlls config to pass to helm-ls.",
           "default": {
             "enabled": true,
             "enabledForFilesGlob": "*.{yaml,yml}",
@@ -73,7 +73,7 @@
               }
             }
           ],
-          "description": "The path to yaml-language-server (string) or command array (array). The extension will automatically set this to use the yaml-language-server from the YAML vscode extension when available.",
+          "description": "The path to yaml-language-server (string) or command array (array). The extension will automatically set this to use the bundeled yaml-language-server if not configured.",
           "default": ""
         }
       }
