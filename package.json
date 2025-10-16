@@ -60,6 +60,21 @@
               "hover": true
             }
           }
+        },
+        "helm-ls.yamlls.path": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ],
+          "description": "The path to yaml-language-server (string) or command array (array). If not configured, the extension will use a bundled yaml-language-server, fall back to PATH, or use the default.",
+          "default": ""
         }
       }
     }
@@ -80,7 +95,8 @@
     "release": "release-it"
   },
   "dependencies": {
-    "vscode-languageclient": "^9.0.1"
+    "vscode-languageclient": "^9.0.1",
+    "yaml-language-server": "^1.19.1"
   },
   "devDependencies": {
     "@release-it/conventional-changelog": "^10.0.0",
@@ -91,6 +107,7 @@
     "@typescript-eslint/parser": "^8.0.0",
     "@vscode/test-cli": "^0.0.11",
     "@vscode/test-electron": "^2.3.9",
+    "copy-webpack-plugin": "^13.0.1",
     "eslint": "^9.0.0",
     "release-it": "^19.0.0",
     "ts-loader": "^9.5.1",

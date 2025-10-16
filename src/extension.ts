@@ -1,4 +1,5 @@
 import * as vscode from "vscode";
+import * as path from "path";
 
 import {
   Executable,
@@ -8,6 +9,7 @@ import {
   TransportKind,
 } from "vscode-languageclient/node";
 import { getHelmLsExecutable } from "./util/executable";
+import { getYamllsPath } from "./util/yamlls-path";
 
 let client: LanguageClient;
 
@@ -28,12 +30,25 @@ export async function activate(context: vscode.ExtensionContext) {
     return;
   }
 
+  let helmLsEnv: NodeJS.ProcessEnv = {
+    ...process.env,
+  };
+
+  const yamllsPath = await getYamllsPath(context.extensionPath);
+  if (yamllsPath) {
+    helmLsEnv.YAMLLS_PATH = yamllsPath;
+    helmLsEnv.ELECTRON_RUN_AS_NODE = "1";
+  }
+
   console.log("Launching " + helmLsExecutable);
 
   const executable: Executable = {
     command: helmLsExecutable,
     args: ["serve"],
     transport: TransportKind.stdio,
+    options: {
+      env: helmLsEnv,
+    },
   };
 
   const serverOptions: ServerOptions = {
@@ -43,7 +58,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
   const clientOptions: LanguageClientOptions = {
     documentSelector: [
-      { 
+      {
         language: "helm",
         scheme: "file",
       },
