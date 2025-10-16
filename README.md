@@ -10,7 +10,7 @@
 
 <!-- vim-markdown-toc -->
 
-Helm-ls-vscode connects VSCode to helm-ls to provide autocompletion, linting, hover, Go-To-Definition and support to use yaml-language-server for helm charts. The extension automatically uses the yaml-language-server from the YAML vscode extension when available.
+Helm-ls-vscode connects VSCode to helm-ls to provide autocompletion, linting, hover, Go-To-Definition and support to use yaml-language-server for helm charts. The extension bundles yaml-language-server and automatically configures helm-ls to use it.
 
 ## Getting Started
 
