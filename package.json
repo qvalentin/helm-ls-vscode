@@ -73,7 +73,7 @@
               }
             }
           ],
-          "description": "The path to yaml-language-server (string) or command array (array). The extension will automatically set this to use the bundeled yaml-language-server if not configured.",
+          "description": "The path to yaml-language-server (string) or command array (array). If not configured, the extension will use a bundled yaml-language-server, fall back to PATH, or use the default.",
           "default": ""
         }
       }
