@@ -43,7 +43,7 @@ export async function getYamllsPath(
       console.log(
         `Found yaml-language-server from extension. Using: node ${yamllsPath}`,
       );
-      return ["node", yamllsPath].join(",");
+      return JSON.stringify(["node", yamllsPath]);
     }
     console.log(
       `Found yaml-language-server from extension. Using: ${process.execPath} ${yamllsPath}`,
@@ -54,8 +54,8 @@ export async function getYamllsPath(
       process.execPath,
       ...process.execArgv.filter((flag) => !flag.startsWith("--inspect")),
       yamllsPath,
-    ].join(",");
-    return command;
+    ];
+    return JSON.stringify(command);
   }
 
   console.log(
