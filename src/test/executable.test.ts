@@ -69,6 +69,7 @@ class MockExtensionContext implements vscode.ExtensionContext {
     delete: () => Promise.resolve(),
     onDidChange: new vscode.EventEmitter<vscode.SecretStorageChangeEvent>()
       .event,
+    keys: () => Promise.resolve([]),
   };
   asAbsolutePath = (relativePath: string) =>
     path.join(this.extensionPath, relativePath);
