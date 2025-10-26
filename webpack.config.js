@@ -49,6 +49,10 @@ const extensionConfig = {
     new CopyPlugin({
       patterns: [
         {
+          from: "./node_modules/yaml-language-server/LICENSE",
+          to: path.resolve(__dirname, "dist", "out"),
+        },
+        {
           from: "./node_modules/yaml-language-server/out",
           to: path.resolve(__dirname, "dist", "out"),
         },
