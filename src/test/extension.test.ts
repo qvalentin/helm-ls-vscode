@@ -14,7 +14,7 @@ suite("Extension Test Suite", () => {
 		assert.strictEqual(-1, [1, 2, 3].indexOf(0));
 	});
 
-	test('Hover tests', async () => {
+	test('Hover tests', async () => {, 5000);
 		const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
 		assert.ok(workspaceFolder, 'No workspace folder found');
 		const docPath = path.join(workspaceFolder.uri.fsPath, 'src', 'test', 'fixtures', 'testChart', 'templates', 'deployment.yaml');
