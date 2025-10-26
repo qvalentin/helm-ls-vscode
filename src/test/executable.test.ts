@@ -82,105 +82,107 @@ class MockExtensionContext implements vscode.ExtensionContext {
   };
 }
 
-suite("Executable Test Suite", () => {
-  test("Download binary for macOS Intel (amd64)", async function () {
-    this.timeout(30000);
-    const context = new MockExtensionContext();
-    const platformInfo = {
-      platform: "darwin",
-      arch: "amd64",
-      extension: "",
-    };
-    const helmExecutable = await downloadHelmLs(context, platformInfo);
-    assert.ok(helmExecutable);
-    assert.ok(!helmExecutable.endsWith(".exe"));
-    assert.ok(await fs.stat(helmExecutable));
-  });
+if (process.env.CI) {
+  suite("Executable Test Suite", () => {
+    test("Download binary for macOS Intel (amd64)", async function () {
+      this.timeout(30000);
+      const context = new MockExtensionContext();
+      const platformInfo = {
+        platform: "darwin",
+        arch: "amd64",
+        extension: "",
+      };
+      const helmExecutable = await downloadHelmLs(context, platformInfo);
+      assert.ok(helmExecutable);
+      assert.ok(!helmExecutable.endsWith(".exe"));
+      assert.ok(await fs.stat(helmExecutable));
+    });
 
-  test("Download binary for macOS Apple Silicon (arm64)", async function () {
-    this.timeout(30000);
-    const context = new MockExtensionContext();
-    const platformInfo = {
-      platform: "darwin",
-      arch: "arm64",
-      extension: "",
-    };
-    const helmExecutable = await downloadHelmLs(context, platformInfo);
-    assert.ok(helmExecutable);
-    assert.ok(!helmExecutable.endsWith(".exe"));
-    assert.ok(await fs.stat(helmExecutable));
-  });
+    test("Download binary for macOS Apple Silicon (arm64)", async function () {
+      this.timeout(30000);
+      const context = new MockExtensionContext();
+      const platformInfo = {
+        platform: "darwin",
+        arch: "arm64",
+        extension: "",
+      };
+      const helmExecutable = await downloadHelmLs(context, platformInfo);
+      assert.ok(helmExecutable);
+      assert.ok(!helmExecutable.endsWith(".exe"));
+      assert.ok(await fs.stat(helmExecutable));
+    });
 
-  test("Download binary for Linux amd64", async function () {
-    this.timeout(30000);
-    const context = new MockExtensionContext();
-    const platformInfo = {
-      platform: "linux",
-      arch: "amd64",
-      extension: "",
-    };
-    const helmExecutable = await downloadHelmLs(context, platformInfo);
-    assert.ok(helmExecutable);
-    assert.ok(!helmExecutable.endsWith(".exe"));
-    assert.ok(await fs.stat(helmExecutable));
-  });
+    test("Download binary for Linux amd64", async function () {
+      this.timeout(30000);
+      const context = new MockExtensionContext();
+      const platformInfo = {
+        platform: "linux",
+        arch: "amd64",
+        extension: "",
+      };
+      const helmExecutable = await downloadHelmLs(context, platformInfo);
+      assert.ok(helmExecutable);
+      assert.ok(!helmExecutable.endsWith(".exe"));
+      assert.ok(await fs.stat(helmExecutable));
+    });
 
-  test("Download binary for Linux ARM (32-bit)", async function () {
-    this.timeout(30000);
-    const context = new MockExtensionContext();
-    const platformInfo = {
-      platform: "linux",
-      arch: "arm",
-      extension: "",
-    };
-    const helmExecutable = await downloadHelmLs(context, platformInfo);
-    assert.ok(helmExecutable);
-    assert.ok(!helmExecutable.endsWith(".exe"));
-    assert.ok(await fs.stat(helmExecutable));
-  });
+    test("Download binary for Linux ARM (32-bit)", async function () {
+      this.timeout(30000);
+      const context = new MockExtensionContext();
+      const platformInfo = {
+        platform: "linux",
+        arch: "arm",
+        extension: "",
+      };
+      const helmExecutable = await downloadHelmLs(context, platformInfo);
+      assert.ok(helmExecutable);
+      assert.ok(!helmExecutable.endsWith(".exe"));
+      assert.ok(await fs.stat(helmExecutable));
+    });
 
-  test("Download binary for Linux ARM64", async function () {
-    this.timeout(30000);
-    const context = new MockExtensionContext();
-    const platformInfo = {
-      platform: "linux",
-      arch: "arm64",
-      extension: "",
-    };
-    const helmExecutable = await downloadHelmLs(context, platformInfo);
-    assert.ok(helmExecutable);
-    assert.ok(!helmExecutable.endsWith(".exe"));
-    assert.ok(await fs.stat(helmExecutable));
-  });
+    test("Download binary for Linux ARM64", async function () {
+      this.timeout(30000);
+      const context = new MockExtensionContext();
+      const platformInfo = {
+        platform: "linux",
+        arch: "arm64",
+        extension: "",
+      };
+      const helmExecutable = await downloadHelmLs(context, platformInfo);
+      assert.ok(helmExecutable);
+      assert.ok(!helmExecutable.endsWith(".exe"));
+      assert.ok(await fs.stat(helmExecutable));
+    });
 
-  test("Download binary for Windows x64", async function () {
-    this.timeout(30000);
-    const context = new MockExtensionContext();
-    const platformInfo = {
-      platform: "windows",
-      arch: "amd64",
-      extension: ".exe",
-    };
-    const helmExecutable = await downloadHelmLs(context, platformInfo);
-    assert.ok(helmExecutable);
-    assert.ok(helmExecutable.endsWith(".exe"));
-    assert.ok(await fs.stat(helmExecutable));
-  });
+    test("Download binary for Windows x64", async function () {
+      this.timeout(30000);
+      const context = new MockExtensionContext();
+      const platformInfo = {
+        platform: "windows",
+        arch: "amd64",
+        extension: ".exe",
+      };
+      const helmExecutable = await downloadHelmLs(context, platformInfo);
+      assert.ok(helmExecutable);
+      assert.ok(helmExecutable.endsWith(".exe"));
+      assert.ok(await fs.stat(helmExecutable));
+    });
 
-  test("Reuse downloaded binary", async function () {
-    this.timeout(30000);
-    const context = new MockExtensionContext();
-    const platformInfo = {
-      platform: "linux",
-      arch: "amd64",
-      extension: "",
-    };
-    // First download
-    const helmExecutable1 = await downloadHelmLs(context, platformInfo);
-    assert.ok(helmExecutable1);
+    test("Reuse downloaded binary", async function () {
+      this.timeout(30000);
+      const context = new MockExtensionContext();
+      const platformInfo = {
+        platform: "linux",
+        arch: "amd64",
+        extension: "",
+      };
+      // First download
+      const helmExecutable1 = await downloadHelmLs(context, platformInfo);
+      assert.ok(helmExecutable1);
 
-    // Second attempt should reuse the same file
-    const helmExecutable2 = await downloadHelmLs(context, platformInfo);
-    assert.strictEqual(helmExecutable1, helmExecutable2);
+      // Second attempt should reuse the same file
+      const helmExecutable2 = await downloadHelmLs(context, platformInfo);
+      assert.strictEqual(helmExecutable1, helmExecutable2);
+    });
   });
-});
+}
