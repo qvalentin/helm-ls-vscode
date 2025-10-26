@@ -89,8 +89,8 @@
     "package": "webpack --mode production --devtool hidden-source-map",
     "compile-tests": "tsc -p . --outDir out",
     "watch-tests": "tsc -p . -w --outDir out",
-    "pretest": "npm run compile-tests && npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
+    "pretest": "npm run compile-tests && npm run compile",
+    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint src --ext ts",
     "test": "vscode-test",
     "release": "release-it"
   },
