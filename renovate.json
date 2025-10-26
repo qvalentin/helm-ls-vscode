@@ -27,7 +27,7 @@
         "on the first day of the month"
       ],
       "matchPackageNames": [
-        "!helm-ls"
+        "!mrjosh/helm-ls"
       ]
     }
   ],
