@@ -7,5 +7,5 @@ const __dirname = path.dirname(__filename);
 
 export default defineConfig({
 	files: 'out/test/**/*.test.js',
-	folderPath: path.resolve(__dirname),
+	workspaceFolder: path.resolve(__dirname),
 });
