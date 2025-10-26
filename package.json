@@ -91,7 +91,7 @@
     "watch-tests": "tsc -p . -w --outDir out",
     "pretest": "npm run compile-tests && npm run compile",
     "lint": "ESLINT_USE_FLAT_CONFIG=false eslint src --ext ts",
-    "test": "vscode-test .",
+    "test": "vscode-test",
     "release": "release-it"
   },
   "dependencies": {
