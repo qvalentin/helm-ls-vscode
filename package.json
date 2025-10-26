@@ -105,7 +105,7 @@
     "@types/vscode": "^1.88.0",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
-    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-cli": "^0.0.12",
     "@vscode/test-electron": "^2.3.9",
     "copy-webpack-plugin": "^13.0.1",
     "eslint": "^9.0.0",
