@@ -22,6 +22,8 @@ suite("Extension Test Suite", () => {
 		const document = await vscode.workspace.openTextDocument(docUri);
 		await vscode.window.showTextDocument(document);
 
+		await new Promise(resolve => setTimeout(resolve, 2000));
+
 		// Test hover on a Helm property: .Values.replicaCount at line 9
 		const helmPosition = new vscode.Position(8, 25); // Position inside 'replicaCount'
 		const helmHovers = await vscode.commands.executeCommand<vscode.Hover[]>(
