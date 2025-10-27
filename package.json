@@ -77,11 +77,22 @@
           "default": ""
         }
       }
-    }
+    },
+    "languages": [
+      {
+        "id": "helm",
+        "aliases": ["helm-template", "helm"],
+        "filenamePatterns": [
+          "**/templates/*.yaml",
+          "**/templates/*.yml",
+          "**/templates/*.tpl",
+          "**/templates/**/*.yaml",
+          "**/templates/**/*.yml",
+          "**/templates/**/*.tpl"
+        ]
+      }
+    ]
   },
-  "extensionDependencies": [
-    "ms-kubernetes-tools.vscode-kubernetes-tools"
-  ],
   "scripts": {
     "vscode:prepublish": "npm run package",
     "compile": "webpack",
