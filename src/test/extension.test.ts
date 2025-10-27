@@ -4,6 +4,7 @@ import * as vscode from "vscode";
 
 /**
  * Helper function to wait for extension activation with timeout
+ * Extension should activate automatically when Helm documents are opened
  */
 async function waitForExtensionActivation(extensionId: string, timeout: number = 10000): Promise<vscode.Extension<any>> {
   const startTime = Date.now();
@@ -11,11 +12,6 @@ async function waitForExtensionActivation(extensionId: string, timeout: number =
   while (Date.now() - startTime < timeout) {
     const ext = vscode.extensions.getExtension(extensionId);
     if (ext?.isActive) {
-      return ext;
-    }
-
-    if (ext && !ext.isActive) {
-      await ext.activate();
       return ext;
     }
 
@@ -46,18 +42,22 @@ async function openHelmDocument(workspaceFolder: vscode.WorkspaceFolder): Promis
 suite("Extension Test Suite", () => {
   vscode.window.showInformationMessage('Starting Helm LS extension tests');
 
-  test("Extension loads and activates", async function () {
-    this.timeout(30000); // 30 seconds should be plenty
+  test("Extension loads and activates when opening Helm documents", async function () {
+    this.timeout(30000);
 
     const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
     assert.ok(workspaceFolder, 'No workspace folder found');
 
-    // Open a Helm file to trigger activation
+    // Extension should not be active initially
+    const extBefore = vscode.extensions.getExtension('helm-ls.helm-ls');
+    assert.ok(extBefore, 'Extension should be installed');
+
+    // Open a Helm file - this should trigger activation via onLanguage:helm
     await openHelmDocument(workspaceFolder);
 
-    // Wait for extension to activate
+    // Wait for extension to activate automatically
     const ext = await waitForExtensionActivation('helm-ls.helm-ls');
-    assert.ok(ext, 'Extension should be activated');
+    assert.ok(ext.isActive, 'Extension should be activated after opening Helm document');
     assert.strictEqual(ext.id, 'helm-ls.helm-ls');
   });
 
