@@ -77,11 +77,22 @@
           "default": ""
         }
       }
-    }
+    },
+    "languages": [
+      {
+        "id": "helm",
+        "aliases": ["helm-template", "helm"],
+        "filenamePatterns": [
+          "**/templates/*.yaml",
+          "**/templates/*.yml",
+          "**/templates/*.tpl",
+          "**/templates/**/*.yaml",
+          "**/templates/**/*.yml",
+          "**/templates/**/*.tpl"
+        ]
+      }
+    ]
   },
-  "extensionDependencies": [
-    "ms-kubernetes-tools.vscode-kubernetes-tools"
-  ],
   "scripts": {
     "vscode:prepublish": "npm run package",
     "compile": "webpack",
@@ -89,9 +100,9 @@
     "package": "webpack --mode production --devtool hidden-source-map",
     "compile-tests": "tsc -p . --outDir out",
     "watch-tests": "tsc -p . -w --outDir out",
-    "pretest": "npm run compile-tests && npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
-    "test": "vscode-test",
+    "pretest": "npm run compile-tests && npm run compile",
+    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint src --ext ts",
+    "test": "vscode-test --extensionDevelopmentPath=. --extensionTestsPath=./out/test",
     "release": "release-it"
   },
   "dependencies": {
