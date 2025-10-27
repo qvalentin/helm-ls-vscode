@@ -80,7 +80,7 @@ suite("Extension Test Suite", () => {
 		assert.strictEqual(yamlHovers.length, 1, 'Expected one hover for YAML property');
 		const yamlHoverContent = yamlHovers[0].contents[0] as vscode.MarkdownString;
 		assert.ok(
-			yamlHoverContent.value.includes('Unsupported&nbsp;Markup&nbsp;content&nbsp;received.&nbsp;Kind&nbsp;is:&nbsp;'),
+			yamlHoverContent.value.includes('Specification of the desired behavior of the Deployment.'),
 			`Hover content for YAML property should show documentation. Got ${yamlHoverContent.value}`
 		);
 	});
