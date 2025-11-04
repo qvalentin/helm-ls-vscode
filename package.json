@@ -81,7 +81,10 @@
     "languages": [
       {
         "id": "helm",
-        "aliases": ["helm-template", "helm"],
+        "aliases": [
+          "helm-template",
+          "helm"
+        ],
         "filenamePatterns": [
           "**/templates/*.yaml",
           "**/templates/*.yml",
@@ -101,8 +104,8 @@
     "compile-tests": "tsc -p . --outDir out",
     "watch-tests": "tsc -p . -w --outDir out",
     "pretest": "npm run compile-tests && npm run compile",
-    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint src --ext ts",
-    "test": "vscode-test --extensionDevelopmentPath=. --extensionTestsPath=./out/test",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test",
     "release": "release-it"
   },
   "dependencies": {
