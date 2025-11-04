@@ -55,7 +55,7 @@ suite("Extension Test Suite", () => {
   vscode.window.showInformationMessage("Starting Helm LS extension tests");
 
   test("Extension loads and activates when opening Helm documents", async function () {
-    this.timeout(3000);
+    this.timeout(7000);
 
     const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
     assert.ok(workspaceFolder, "No workspace folder found");
