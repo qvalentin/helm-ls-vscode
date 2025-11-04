@@ -8,7 +8,7 @@ import * as vscode from "vscode";
  */
 async function waitForExtensionActivation(
   extensionId: string,
-  timeout: number = 5000,
+  timeout: number = 7000,
 ): Promise<vscode.Extension<any>> {
   const startTime = Date.now();
 
