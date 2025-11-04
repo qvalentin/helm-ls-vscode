@@ -1,3 +1,22 @@
+# Changelog
+
+## [1.5.0](https://github.com/qvalentin/helm-ls-vscode/compare/1.4.1...1.5.0) (2025-11-04)
+
+### Features
+
+* use yamlls from yaml extension ([a479caa](https://github.com/qvalentin/helm-ls-vscode/commit/a479caa3cc5ddde948b6be1654da4aa64c5f202a))
+* use yamlls from yaml extension ([ef624a4](https://github.com/qvalentin/helm-ls-vscode/commit/ef624a40a04fc4052659a52fc2dd077c421574cb))
+
+### Bug Fixes
+
+* clean up yamlls-path.ts ([c429f9c](https://github.com/qvalentin/helm-ls-vscode/commit/c429f9cf4df4c974b0d091bee7a85fb5fb1d02fb))
+* copy whole yaml-language-server (including locales) ([88a84e8](https://github.com/qvalentin/helm-ls-vscode/commit/88a84e88fbf187b7ee3317a336f39afd92d10afc))
+* do not overwrite user config ([40f791e](https://github.com/qvalentin/helm-ls-vscode/commit/40f791ee0ce4c2ee012440cf85022a6d181996d0))
+* include LICENSE and add copy-webpack-plugin ([c4228d2](https://github.com/qvalentin/helm-ls-vscode/commit/c4228d2801741f20f517005f12c442579eb0d0bb))
+* use json from env var ([481ac29](https://github.com/qvalentin/helm-ls-vscode/commit/481ac2907888840642d983ac5ae88753baa4dfb3))
+* use node if found per default, include ELECTRON_RUN_AS_NODE ([e2022b5](https://github.com/qvalentin/helm-ls-vscode/commit/e2022b594bbae5a45cbe5444e37516b29ad43393))
+* use single webpack config ([d11a7fa](https://github.com/qvalentin/helm-ls-vscode/commit/d11a7faab60beac50bb5b0533915b6447fe25fca))
+
 ## [1.4.1](https://github.com/qvalentin/helm-ls-vscode/compare/1.4.0...1.4.1) (2025-08-16)
 
 - several Dependency updates
