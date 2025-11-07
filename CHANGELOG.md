@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.5.1](https://github.com/qvalentin/helm-ls-vscode/compare/1.5.0...1.5.1) (2025-11-07)
+
+### Bug Fixes
+
+* update mock MockExtensionContext ([efad0ac](https://github.com/qvalentin/helm-ls-vscode/commit/efad0ac403424a36dd23cbf09f656bb2af2fb8c8))
+
 ## [1.5.0](https://github.com/qvalentin/helm-ls-vscode/compare/1.4.1...1.5.0) (2025-11-04)
 
 ### Features
