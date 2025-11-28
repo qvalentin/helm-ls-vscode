@@ -10,6 +10,7 @@ import {
 } from "vscode-languageclient/node";
 import { getHelmLsExecutable } from "./util/executable";
 import { getYamllsPath } from "./util/yamlls-path";
+import * as unusedValuesDecorator from "./util/unusedValuesDecorator";
 
 let client: LanguageClient;
 
@@ -79,10 +80,13 @@ export async function activate(context: vscode.ExtensionContext) {
   );
 
   client.start();
+
+  unusedValuesDecorator.activate(context);
 }
 
 export function deactivate(): Thenable<void> | undefined {
   console.log("Deactivating helm-ls");
+  unusedValuesDecorator.deactivate();
   if (!client) {
     return undefined;
   }
