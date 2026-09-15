@@ -95,7 +95,7 @@
     "release": "release-it"
   },
   "dependencies": {
-    "vscode-languageclient": "^9.0.1",
+    "vscode-languageclient": "^10.0.0",
     "yaml-language-server": "^1.19.1"
   },
   "devDependencies": {
