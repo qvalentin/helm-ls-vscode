@@ -96,7 +96,7 @@
   },
   "dependencies": {
     "vscode-languageclient": "^9.0.1",
-    "yaml-language-server": "^1.19.1"
+    "yaml-language-server": "^2.0.0"
   },
   "devDependencies": {
     "@release-it/conventional-changelog": "^10.0.0",
